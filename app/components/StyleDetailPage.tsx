@@ -12,6 +12,11 @@ interface StyleDetailPageProps {
   onPrev: () => void;
 }
 
+type ImageTab =
+  | { key: 'moodboard'; label: string; labelCN: string; labelIndex?: never }
+  | { key: 'mockup'; label: string; labelCN: string; labelIndex?: never }
+  | { key: 'labels'; label: string; labelCN: string; labelIndex: number };
+
 export default function StyleDetailPage({ styleId, onClose, onNext, onPrev }: StyleDetailPageProps) {
   const style = stylesData.find(s => s.id === styleId);
   const [currentImageType, setCurrentImageType] = useState<'moodboard' | 'mockup' | 'labels'>('moodboard');
@@ -20,9 +25,9 @@ export default function StyleDetailPage({ styleId, onClose, onNext, onPrev }: St
   if (!style) return null;
 
   // Build dynamic image tabs including all label variants
-  const imageTabs = [
-    { key: 'moodboard' as const, label: 'Moodboard', labelCN: '设计灵感' },
-    { key: 'mockup' as const, label: 'Mockup', labelCN: '瓶身效果' },
+  const imageTabs: ImageTab[] = [
+    { key: 'moodboard', label: 'Moodboard', labelCN: '设计灵感' },
+    { key: 'mockup', label: 'Mockup', labelCN: '瓶身效果' },
     ...style.images.labels.map((_, index) => ({
       key: 'labels' as const,
       label: `Label ${index + 1}`,
