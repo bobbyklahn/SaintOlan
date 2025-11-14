@@ -78,7 +78,7 @@ export const stylesData: StyleData[] = [
   {
     id: 4,
     name: "Crusader Warrior",
-    chineseName: "十字军战士系列",
+    chineseName: "骑士风格",
     description: "英勇历史感，骑士精神，神圣战士",
     features: [
       "核心理念：视觉核心：十字军盾牌、剑、或战士剪影",
